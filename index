@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สมัครเรียน Shopee Affiliate</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Prompt', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ff5a00, #ff8c00, #111827);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 620px;
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+
+    .badge {
+      display: inline-block;
+      background: #ff5a00;
+      color: white;
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0;
+      color: #111827;
+      font-size: 30px;
+      line-height: 1.3;
+    }
+
+    .subtitle {
+      color: #555;
+      margin: 10px 0 25px;
+      font-size: 16px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 14px 0 6px;
+      color: #222;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #ff5a00;
+      box-shadow: 0 0 0 3px rgba(255,90,0,0.15);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 24px;
+      padding: 16px;
+      border: none;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #ff5a00, #ff7a00);
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(255,90,0,0.35);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 13px;
+      color: #777;
+      margin-top: 18px;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 99;
+    }
+
+    .popup-box {
+      background: white;
+      max-width: 420px;
+      width: 100%;
+      border-radius: 24px;
+      padding: 32px;
+      text-align: center;
+      animation: pop 0.25s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .popup-box h2 {
+      color: #ff5a00;
+      margin-bottom: 10px;
+    }
+
+    .line-btn {
+      display: block;
+      margin-top: 18px;
+      padding: 14px;
+      background: #06c755;
+      color: white;
+      text-decoration: none;
+      border-radius: 14px;
+      font-weight: bold;
+    }
+
+    .close-btn {
+      margin-top: 12px;
+      background: #111827;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="badge">รับสมัครอบรม</div>
+
+    <h1>หลักสูตร Shopee Affiliate<br>สร้างรายได้ออนไลน์ 1 วัน</h1>
+
+    <p class="subtitle">
+      เรียนรู้การทำ Affiliate ตั้งแต่พื้นฐาน สร้างลิงก์ เลือกสินค้า ทำคอนเทนต์ และเริ่มสร้างรายได้
+    </p>
+
+    <form id="registerForm">
+      <label>ชื่อ-นามสกุล *</label>
+      <input type="text" name="fullname" required>
+
+      <label>เบอร์โทรศัพท์ *</label>
+      <input type="tel" name="phone" required>
+
+      <label>Line ID</label>
+      <input type="text" name="lineId">
+
+      <label>Facebook</label>
+      <input type="text" name="facebook">
+
+      <label>อาชีพ</label>
+      <select name="job">
+        <option value="">-- เลือกอาชีพ --</option>
+        <option>นักเรียน / นักศึกษา</option>
+        <option>พนักงานประจำ</option>
+        <option>เจ้าของธุรกิจ</option>
+        <option>แม่ค้าออนไลน์</option>
+        <option>อื่น ๆ</option>
+      </select>
+
+      <label>มีประสบการณ์ทำ Affiliate หรือไม่?</label>
+      <select name="experience">
+        <option>ไม่มีประสบการณ์</option>
+        <option>เคยทำเล็กน้อย</option>
+        <option>เคยทำแล้ว แต่ยังไม่มียอด</option>
+        <option>เคยทำและมีรายได้แล้ว</option>
+      </select>
+
+      <label>ช่องทางที่สนใจทำคอนเทนต์</label>
+      <select name="channel">
+        <option>TikTok</option>
+        <option>Facebook Reels</option>
+        <option>YouTube Shorts</option>
+        <option>Facebook Page</option>
+        <option>ยังไม่แน่ใจ</option>
+      </select>
+
+      <label>หมายเหตุเพิ่มเติม</label>
+      <textarea name="note" placeholder="เช่น ต้องการสอบถามรอบอบรม / ต้องการเรียนออนไลน์ / ไม่มีพื้นฐาน"></textarea>
+
+      <button type="submit">ส่งใบสมัคร</button>
+    </form>
+
+    <div class="footer">
+      Workshop ลงมือทำจริง | ไม่มีพื้นฐานก็เรียนได้
+    </div>
+  </div>
+
+  <div class="popup" id="thankPopup">
+    <div class="popup-box">
+      <h2>สมัครสำเร็จแล้ว 🎉</h2>
+      <p>ขอบคุณที่สมัครหลักสูตร Shopee Affiliate</p>
+      <p>สอบถามเพิ่มเติม แอด Line ได้เลย</p>
+
+      <a class="line-btn" href="https://lin.ee/514sRGp" target="_blank">
+        แอด Line สอบถามเพิ่มเติม
+      </a>
+
+      <button class="close-btn" onclick="closePopup()">ปิดหน้าต่าง</button>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("registerForm");
+    const popup = document.getElementById("thankPopup");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      google.script.run
+        .withSuccessHandler(function() {
+          form.reset();
+          popup.style.display = "flex";
+        })
+        .withFailureHandler(function(error) {
+          alert("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง");
+          console.error(error);
+        })
+        .submitForm(data);
+    });
+
+    function closePopup() {
+      popup.style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
