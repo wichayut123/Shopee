@@ -1,5 +1,5 @@
 <script>
-const SCRIPT_URL = "YOUR_APPS_SCRIPT_WEB_APP_URL";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyww-OneiJ5VFBrY7QDyMHSfeYFdmELw7gCW2JrHXg2/dev";
 
 document.getElementById("registerForm").addEventListener("submit", async function(e) {
   e.preventDefault();
