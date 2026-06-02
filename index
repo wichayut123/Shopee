@@ -1,32 +1,332 @@
-<script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyww-OneiJ5VFBrY7QDyMHSfeYFdmELw7gCW2JrHXg2/dev";
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>สมัครเรียน Shopee Affiliate</title>
 
-document.getElementById("registerForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-  const form = e.target;
-  const data = Object.fromEntries(new FormData(form).entries());
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ff5a00, #ff8a00, #111827);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
 
-  try {
-    const response = await fetch(SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
+    .container {
+      width: 100%;
+      max-width: 720px;
+      background: #fff;
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+    }
+
+    .badge {
+      display: inline-block;
+      background: #ff5a00;
+      color: white;
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+      color: #111827;
+      line-height: 1.25;
+    }
+
+    .subtitle {
+      color: #555;
+      margin: 12px 0 24px;
+      line-height: 1.7;
+    }
+
+    .info-box {
+      background: #fff4ed;
+      border-left: 5px solid #ff5a00;
+      padding: 14px 18px;
+      border-radius: 14px;
+      margin-bottom: 22px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 14px 0 7px;
+      color: #222;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      font-size: 15px;
+      outline: none;
+      background: #fff;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #ff5a00;
+      box-shadow: 0 0 0 3px rgba(255,90,0,0.15);
+    }
+
+    textarea {
+      min-height: 95px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 24px;
+      padding: 17px;
+      border: none;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #ff5a00, #ff8500);
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(255,90,0,0.35);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 18px;
+      color: #777;
+      font-size: 13px;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      padding: 20px;
+    }
+
+    .popup-box {
+      background: white;
+      max-width: 430px;
+      width: 100%;
+      border-radius: 26px;
+      padding: 34px;
+      text-align: center;
+      animation: pop 0.25s ease;
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(0.85);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .popup-box h2 {
+      margin: 0 0 12px;
+      color: #ff5a00;
+      font-size: 28px;
+    }
+
+    .popup-box p {
+      color: #444;
+      line-height: 1.7;
+    }
+
+    .line-btn {
+      display: block;
+      margin-top: 18px;
+      padding: 15px;
+      background: #06c755;
+      color: white;
+      text-decoration: none;
+      border-radius: 16px;
+      font-weight: bold;
+    }
+
+    .close-btn {
+      width: 100%;
+      margin-top: 12px;
+      padding: 14px;
+      border: none;
+      border-radius: 16px;
+      background: #111827;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 24px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="badge">เปิดรับสมัครแล้ว</div>
+
+    <h1>หลักสูตร Shopee Affiliate<br>สร้างรายได้ออนไลน์ 1 วัน</h1>
+
+    <p class="subtitle">
+      เรียนรู้ตั้งแต่พื้นฐาน การสมัคร การสร้างลิงก์ การเลือกสินค้า
+      การทำคอนเทนต์ และการเริ่มสร้างรายได้จากค่าคอมมิชชัน
+    </p>
+
+    <div class="info-box">
+      📍 ระยะเวลาอบรม 8 ชั่วโมง<br>
+      📍 รูปแบบ Workshop ลงมือทำจริง<br>
+      📍 ไม่มีพื้นฐานก็เรียนได้
+    </div>
+
+    <form id="registerForm">
+      <label>ชื่อ-นามสกุล *</label>
+      <input type="text" name="fullname" placeholder="กรอกชื่อ-นามสกุล" required>
+
+      <label>เบอร์โทรศัพท์ *</label>
+      <input type="tel" name="phone" placeholder="กรอกเบอร์โทรศัพท์" required>
+
+      <label>Line ID</label>
+      <input type="text" name="lineId" placeholder="กรอก Line ID">
+
+      <label>Facebook</label>
+      <input type="text" name="facebook" placeholder="ลิงก์หรือชื่อ Facebook">
+
+      <label>อาชีพ</label>
+      <select name="job">
+        <option value="">-- เลือกอาชีพ --</option>
+        <option>นักเรียน / นักศึกษา</option>
+        <option>พนักงานประจำ</option>
+        <option>เจ้าของธุรกิจ</option>
+        <option>แม่ค้าออนไลน์</option>
+        <option>ผู้ที่ต้องการรายได้เสริม</option>
+        <option>อื่น ๆ</option>
+      </select>
+
+      <label>มีประสบการณ์ทำ Affiliate หรือไม่?</label>
+      <select name="experience">
+        <option>ไม่มีประสบการณ์</option>
+        <option>เคยทำเล็กน้อย</option>
+        <option>เคยทำแล้ว แต่ยังไม่มียอด</option>
+        <option>เคยทำและมีรายได้แล้ว</option>
+      </select>
+
+      <label>ช่องทางที่สนใจทำคอนเทนต์</label>
+      <select name="channel">
+        <option>TikTok</option>
+        <option>Facebook Reels</option>
+        <option>YouTube Shorts</option>
+        <option>Facebook Page</option>
+        <option>ยังไม่แน่ใจ</option>
+      </select>
+
+      <label>หมายเหตุเพิ่มเติม</label>
+      <textarea name="note" placeholder="เช่น ต้องการสอบถามรอบอบรม / ต้องการเรียนออนไลน์ / ไม่มีพื้นฐาน"></textarea>
+
+      <button type="submit" class="submit-btn" id="submitBtn">
+        ส่งใบสมัคร
+      </button>
+    </form>
+
+    <div class="footer">
+      Workshop ลงมือทำจริง | เรียน 1 วัน เริ่มสร้างรายได้ได้จริง
+    </div>
+  </div>
+
+  <div class="popup" id="thankPopup">
+    <div class="popup-box">
+      <h2>สมัครสำเร็จ 🎉</h2>
+      <p>
+        ขอบคุณที่สมัครหลักสูตร Shopee Affiliate<br>
+        ทีมงานได้รับข้อมูลของคุณเรียบร้อยแล้ว
+      </p>
+      <p>สอบถามเพิ่มเติม แอด Line ได้เลย</p>
+
+      <a class="line-btn" href="https://lin.ee/514sRGp" target="_blank">
+        แอด Line สอบถามเพิ่มเติม
+      </a>
+
+      <button class="close-btn" onclick="closePopup()">ปิดหน้าต่าง</button>
+    </div>
+  </div>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyww-OneiJ5VFBrY7QDyMHSfeYFdmELw7gCW2JrHXg2/dev";
+
+    const form = document.getElementById("registerForm");
+    const popup = document.getElementById("thankPopup");
+    const submitBtn = document.getElementById("submitBtn");
+
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "กำลังส่งข้อมูล...";
+
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        form.reset();
+        popup.style.display = "flex";
+
+      } catch (error) {
+        alert("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง");
+        console.error(error);
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = "ส่งใบสมัคร";
     });
 
-    form.reset();
-    document.getElementById("thankPopup").style.display = "flex";
+    function closePopup() {
+      popup.style.display = "none";
+    }
+  </script>
 
-  } catch (error) {
-    alert("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง");
-    console.error(error);
-  }
-});
-
-function closePopup() {
-  document.getElementById("thankPopup").style.display = "none";
-}
-</script>
+</body>
+</html>
